@@ -6,6 +6,7 @@ libopenmpt.locateFile = function (filename) {
 libopenmpt.onRuntimeInitialized = function () {
   var player;
   var songList;
+  var songIndex = 0;
   var isPlaying = false;
 
   function initPlayer() {
@@ -52,7 +53,7 @@ libopenmpt.onRuntimeInitialized = function () {
     //   alert("HTTP-Error: " + response.status);
     // }
 
-    return [
+    return shuffleArray([
       "169695#fletch.mod", "106736#elimination.mod", "98591#electrified_tunes.mod", "76217#leftover.mod", "47305#laidback2.mod",
       "96477#laxity_remix.mod", "126874#computer_sins.mod", "77424#rise_up.mod", "44953#japanese.mod", "35151#bananasplit.mod",
       "112684#jumpin_rattle_bup.mod", "117448#engage_warp_2.mod", "117617#egotrance.mod", "164488#ramosa_-_in_the_mood.mod",
@@ -70,7 +71,15 @@ libopenmpt.onRuntimeInitialized = function () {
       "56098#seaoflov.mod", "128132#mint.mod", "125058#gold_return.mod", "159181#hein_-_sloom.mod", "40475#ELYSIUM.MOD",
       "66036#4mats-madness.mod", "77565#anarchymenu_03.mod", "158468#zing_-_true.mod", "34592#BUD.MOD",
       "105136#hallucinations.mod", "41349#fantvoy2.mod",
-    ]
+    ]);
+  }
+
+  function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
   }
 
   function getRandomSong() {
@@ -86,7 +95,7 @@ libopenmpt.onRuntimeInitialized = function () {
       turnButtonToPlayButton();
     } else {
       isPlaying = true;
-      loadURL("https://api.modarchive.org/downloads.php?moduleid=" + getRandomSong());
+      loadURL("https://api.modarchive.org/downloads.php?moduleid=" + songList[songIndex]);
       player.play();
       turnButtonToPause();
     }
@@ -94,8 +103,16 @@ libopenmpt.onRuntimeInitialized = function () {
 
   function pressNextButton() {
     isPlaying = true;
-    loadURL("https://api.modarchive.org/downloads.php?moduleid=" + getRandomSong());
+    incrementSongIndex();
+    loadURL("https://api.modarchive.org/downloads.php?moduleid=" + songList[songIndex]);
     turnButtonToPause();
+  }
+
+  function incrementSongIndex() {
+    songIndex += 1;
+    if (songIndex >= songList.length) {
+      songIndex = 0;
+    }
   }
 
   function turnButtonToPlayButton() {
