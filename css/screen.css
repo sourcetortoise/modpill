@@ -19,6 +19,19 @@ span, h1, h2, h3, h4, h5, h6, p {
   cursor: default;
 }
 
+a:focus {
+  outline: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a:active {
+  outline: none;
+  color: #5581ff;
+}
+
 .bg {
   width: 100%;
   width: calc(100% - 4rem);
@@ -142,4 +155,14 @@ span, h1, h2, h3, h4, h5, h6, p {
 }
 #sliders > div > input {
   margin-left: 1rem;
+}
+
+.reset-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.reset-link {
+  font-size: 0.7em;
 }

@@ -35,7 +35,7 @@ libopenmpt.onRuntimeInitialized = function () {
   function afterLoad(path, buffer) {
     player.play(buffer);
     if (tempoPitchReset) {
-      document.querySelectorAll('#pitch,#tempo').forEach(e => e.value = 1);
+      resetPitchAndTempo();
     } else {
       setSongToSliderValues();
     }
@@ -155,13 +155,18 @@ libopenmpt.onRuntimeInitialized = function () {
     document.getElementById('pitch').disabled = true;
   }
 
-  function setSongToSliderValues() {
-    if (!tempoPitchReset) {
-        var tempo = document.getElementById('tempo').value.toString();
-        player.module_ctl_set('play.tempo_factor', tempo);
-        var pitch = document.getElementById('pitch').value.toString();
-        player.module_ctl_set('play.pitch_factor', pitch);
+  function setSongToSliderValues(force = null) {
+    if (force || !tempoPitchReset) {
+      var tempo = document.getElementById('tempo').value.toString();
+      player.module_ctl_set('play.tempo_factor', tempo);
+      var pitch = document.getElementById('pitch').value.toString();
+      player.module_ctl_set('play.pitch_factor', pitch);
     }
+  }
+
+  function resetPitchAndTempo() {
+    document.querySelectorAll('#pitch,#tempo').forEach(e => e.value = 1);
+    setSongToSliderValues(true);
   }
 
   // click handlers
@@ -176,6 +181,8 @@ libopenmpt.onRuntimeInitialized = function () {
   // document.querySelector('#volume').addEventListener('input', function (e) {
   //   player.module_ctl_set('play.opl.volume_factor', e.target.value.toString());
   // }, false);
+  document.querySelector('#reset-link').addEventListener('click', resetPitchAndTempo, false);
+
 
   songList = getFavouritesList();
 };
