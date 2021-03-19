@@ -8,6 +8,9 @@ libopenmpt.onRuntimeInitialized = function () {
   var songList;
   var songIndex = 0;
   var isPlaying = false;
+  var isPaused = false;
+  var tempoPitchReset = false;
+  var loop = true;
 
   function initPlayer() {
     if (player == undefined) {
@@ -30,8 +33,12 @@ libopenmpt.onRuntimeInitialized = function () {
   }
 
   function afterLoad(path, buffer) {
-    document.querySelectorAll('#pitch,#tempo').forEach(e => e.value = 1);
     player.play(buffer);
+    if (tempoPitchReset) {
+      document.querySelectorAll('#pitch,#tempo').forEach(e => e.value = 1);
+    } else {
+      setSongToSliderValues();
+    }
     setMetadata(path);
     turnButtonToPause();
   }
@@ -90,18 +97,27 @@ libopenmpt.onRuntimeInitialized = function () {
 
   function pressMainButton() {
     if (isPlaying) {
+      // PAUSE PLAY
       isPlaying = false;
-      player.stop();
+      isPaused = true;
+      player.togglePause();
       turnButtonToPlay();
+      disableSliders();
     } else {
+      // START PLAY
       isPlaying = true;
-      loadURL("https://api.modarchive.org/downloads.php?moduleid=" + songList[songIndex]);
-      player.play();
+      if (isPaused) {
+        player.togglePause();
+      } else {
+        loadURL("https://api.modarchive.org/downloads.php?moduleid=" + songList[songIndex]);
+      }
       turnButtonToPause();
+      enableSliders();
     }
   }
 
   function pressNextButton() {
+    player.stop();
     isPlaying = true;
     incrementSongIndex();
     loadURL("https://api.modarchive.org/downloads.php?moduleid=" + songList[songIndex]);
@@ -126,6 +142,25 @@ libopenmpt.onRuntimeInitialized = function () {
     var button = document.getElementById('play')
     if (button) {
       button.id = "pause";
+    }
+  }
+
+  function enableSliders() {
+    document.getElementById('tempo').disabled = false;
+    document.getElementById('pitch').disabled = false;
+  }
+
+  function disableSliders() {
+    document.getElementById('tempo').disabled = true;
+    document.getElementById('pitch').disabled = true;
+  }
+
+  function setSongToSliderValues() {
+    if (!tempoPitchReset) {
+        var tempo = document.getElementById('tempo').value.toString();
+        player.module_ctl_set('play.tempo_factor', tempo);
+        var pitch = document.getElementById('pitch').value.toString();
+        player.module_ctl_set('play.pitch_factor', pitch);
     }
   }
 
