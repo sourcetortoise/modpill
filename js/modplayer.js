@@ -117,11 +117,11 @@ libopenmpt.onRuntimeInitialized = function () {
   }
 
   function pressNextButton() {
-    player.stop();
     isPlaying = true;
     incrementSongIndex();
     loadURL("https://api.modarchive.org/downloads.php?moduleid=" + songList[songIndex]);
     turnButtonToPause();
+    enableSliders();
   }
 
   function incrementSongIndex() {
