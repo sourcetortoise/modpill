@@ -138,6 +138,9 @@ libopenmpt.onRuntimeInitialized = function () {
   document.querySelector('#tempo').addEventListener('input', function (e) {
     player.module_ctl_set('play.tempo_factor', e.target.value.toString());
   }, false);
+  // document.querySelector('#volume').addEventListener('input', function (e) {
+  //   player.module_ctl_set('play.opl.volume_factor', e.target.value.toString());
+  // }, false);
 
   songList = getFavouritesList();
 };
