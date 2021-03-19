@@ -92,7 +92,7 @@ libopenmpt.onRuntimeInitialized = function () {
     if (isPlaying) {
       isPlaying = false;
       player.stop();
-      turnButtonToPlayButton();
+      turnButtonToPlay();
     } else {
       isPlaying = true;
       loadURL("https://api.modarchive.org/downloads.php?moduleid=" + songList[songIndex]);
@@ -115,7 +115,7 @@ libopenmpt.onRuntimeInitialized = function () {
     }
   }
 
-  function turnButtonToPlayButton() {
+  function turnButtonToPlay() {
     var button = document.getElementById('pause')
     if (button) {
       button.id = "play";
@@ -139,9 +139,5 @@ libopenmpt.onRuntimeInitialized = function () {
     player.module_ctl_set('play.tempo_factor', e.target.value.toString());
   }, false);
 
-  // On window load
-  //window.onload = function funLoad() {
-    console.log('Fetching MOD list...')
-    songList = getFavouritesList();
-  //}
+  songList = getFavouritesList();
 };
