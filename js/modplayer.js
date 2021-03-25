@@ -183,6 +183,14 @@ libopenmpt.onRuntimeInitialized = function () {
   // }, false);
   document.querySelector('#reset-link').addEventListener('click', resetPitchAndTempo, false);
 
+  // key handlers for pause/next
+  window.addEventListener("keydown", function(e) {
+    if (e.key === " " ) {
+      pressMainButton();
+    } else if (e.key === "ArrowRight") {
+      pressNextButton();
+    }
+  });
 
   songList = getFavouritesList();
 };
