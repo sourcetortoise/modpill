@@ -61,6 +61,7 @@ libopenmpt.onRuntimeInitialized = function () {
     // }
 
     return shuffleArray([
+      "92986#solace.mod", "93960#slow_dive.mod", "90996#bear_island.mod", "160447#dexter_-_pida_hauskaa.mod",
       "169695#fletch.mod", "106736#elimination.mod", "98591#electrified_tunes.mod", "76217#leftover.mod", "47305#laidback2.mod",
       "96477#laxity_remix.mod", "126874#computer_sins.mod", "77424#rise_up.mod", "44953#japanese.mod", "35151#bananasplit.mod",
       "112684#jumpin_rattle_bup.mod", "117448#engage_warp_2.mod", "117617#egotrance.mod", "164488#ramosa_-_in_the_mood.mod",
@@ -124,10 +125,25 @@ libopenmpt.onRuntimeInitialized = function () {
     enableSliders();
   }
 
+  function pressPreviousButton() {
+    isPlaying = true;
+    decrementSongIndex();
+    loadURL("https://api.modarchive.org/downloads.php?moduleid=" + songList[songIndex]);
+    turnButtonToPause();
+    enableSliders();
+  }
+
   function incrementSongIndex() {
     songIndex += 1;
     if (songIndex >= songList.length) {
       songIndex = 0;
+    }
+  }
+
+  function decrementSongIndex() {
+    songIndex -= 1;
+    if (songIndex < 0) {
+      songIndex = songList.length - 1;
     }
   }
 
@@ -189,6 +205,8 @@ libopenmpt.onRuntimeInitialized = function () {
       pressMainButton();
     } else if (e.key === "ArrowRight") {
       pressNextButton();
+    } else if (e.key === "ArrowLeft") {
+      pressPreviousButton();
     }
   });
 
