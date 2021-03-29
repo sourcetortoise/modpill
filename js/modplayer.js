@@ -211,10 +211,13 @@ libopenmpt.onRuntimeInitialized = function () {
   window.addEventListener("keydown", function(e) {
     if (e.key === " " ) {
       pressMainButton();
+      e.preventDefault();
     } else if (e.key === "ArrowRight") {
       pressNextButton();
+      e.preventDefault();
     } else if (e.key === "ArrowLeft") {
       pressPreviousButton();
+      e.preventDefault();
     }
   });
 
