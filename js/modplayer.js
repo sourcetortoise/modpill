@@ -58,6 +58,19 @@ libopenmpt.onRuntimeInitialized = function () {
     player.load(path, afterLoad.bind(this, path));
     setModarchiveLink(id);
   }
+
+  function preloadTrack(id) {
+    var request = new XMLHttpRequest();
+    request.open('GET', modArchiveDownloadLink + id);
+    request.send();
+  }
+
+  function preloadNextTrack() {
+    if ((songIndex + 1) >= songList.length) {
+      preloadTrack(songList[0].id);
+    } else {
+      preloadTrack(songList[songIndex + 1].id);
+    }
   }
 
   function getFavouritesList() {
@@ -73,6 +86,8 @@ libopenmpt.onRuntimeInitialized = function () {
         });
         console.log(`${favList.length} favourites loaded.`);
         songList = shuffleArray(favList);
+        preloadTrack(songList[0].id);
+        preloadTrack(songList[1].id);
       }
     };
     request.send();
@@ -115,6 +130,7 @@ libopenmpt.onRuntimeInitialized = function () {
     loadURL(songList[songIndex].id);
     turnButtonToPause();
     enableSliders();
+    preloadNextTrack();
   }
 
   function pressPreviousButton() {
@@ -186,10 +202,10 @@ libopenmpt.onRuntimeInitialized = function () {
   document.querySelector('#tempo').addEventListener('input', function (e) {
     player.module_ctl_set('play.tempo_factor', e.target.value.toString());
   }, false);
+  document.querySelector('#reset-link').addEventListener('click', resetPitchAndTempo, false);
   // document.querySelector('#volume').addEventListener('input', function (e) {
   //   player.module_ctl_set('play.opl.volume_factor', e.target.value.toString());
   // }, false);
-  document.querySelector('#reset-link').addEventListener('click', resetPitchAndTempo, false);
 
   // key handlers for pause/next
   window.addEventListener("keydown", function(e) {
