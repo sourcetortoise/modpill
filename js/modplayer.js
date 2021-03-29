@@ -21,7 +21,7 @@ libopenmpt.onRuntimeInitialized = function () {
     }
   }
 
-  function setMetadata(filename) {
+  function showTrackMetadata(filename) {
     var metadata = player.metadata();
     if (metadata['title'] != '') {
       document.getElementById('title').innerHTML = metadata['title'];
@@ -35,6 +35,12 @@ libopenmpt.onRuntimeInitialized = function () {
     }
   }
 
+  function setModarchiveLink(id) {
+    linkElement = document.getElementById('modarchive-track-link');
+    linkElement.style = 'display: inline-block';
+    linkElement.href = modArchivePageLink + id;
+  }
+
   function afterLoad(path, buffer) {
     player.play(buffer);
     if (tempoPitchReset) {
@@ -42,13 +48,16 @@ libopenmpt.onRuntimeInitialized = function () {
     } else {
       setSongToSliderValues();
     }
-    setMetadata(path);
+    showTrackMetadata(path);
     turnButtonToPause();
   }
 
-  function loadURL(path) {
+  function loadURL(id) {
+    path = modArchiveDownloadLink + id;
     initPlayer();
     player.load(path, afterLoad.bind(this, path));
+    setModarchiveLink(id);
+  }
   }
 
   function getFavouritesList() {
@@ -93,7 +102,7 @@ libopenmpt.onRuntimeInitialized = function () {
       if (isPaused) {
         player.togglePause();
       } else {
-        loadURL(modArchiveDownloadLink + songList[songIndex].id);
+        loadURL(songList[songIndex].id);
       }
       turnButtonToPause();
       enableSliders();
@@ -103,7 +112,7 @@ libopenmpt.onRuntimeInitialized = function () {
   function pressNextButton() {
     isPlaying = true;
     incrementSongIndex();
-    loadURL(modArchiveDownloadLink + songList[songIndex].id);
+    loadURL(songList[songIndex].id);
     turnButtonToPause();
     enableSliders();
   }
@@ -111,7 +120,7 @@ libopenmpt.onRuntimeInitialized = function () {
   function pressPreviousButton() {
     isPlaying = true;
     decrementSongIndex();
-    loadURL(modArchiveDownloadLink + songList[songIndex].id);
+    loadURL(songList[songIndex].id);
     turnButtonToPause();
     enableSliders();
   }
