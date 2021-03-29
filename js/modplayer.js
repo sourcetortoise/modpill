@@ -84,7 +84,7 @@ libopenmpt.onRuntimeInitialized = function () {
         JSON.parse(this.responseText).forEach(function(fav) {
           favList.push({title: fav[0], id: fav[1]});
         });
-        document.getElementById('title').innerHTML = `press play to start. ${favList.length} tracks loaded`;
+        document.getElementById('title').innerHTML = `press play to start • ${favList.length} tracks loaded`;
 
         songList = shuffleArray(favList);
 
