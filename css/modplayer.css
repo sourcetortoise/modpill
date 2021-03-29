@@ -103,6 +103,7 @@ a:active {
   box-shadow: 0px 9px 0px #323232, 0px 9px 25px rgba(0, 0, 0, 0.7);
   transition: all 0.1s ease;
   cursor: pointer;
+  filter: brightness(100%);
 }
 .control:active, .control.pressed {
   box-shadow: 0px 3px 0px #323232, 0px 3px 6px rgba(0, 0, 0, 0.7);
@@ -118,6 +119,10 @@ a:active {
   background-size: 75%;
   background-position: 16px 9px;
   background-repeat: no-repeat;
+}
+.disabled-button {
+  filter: brightness(60%);
+  cursor: default;
 }
 .control#pause {
   background-image: url("../img/pause.svg");

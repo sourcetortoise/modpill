@@ -84,8 +84,11 @@ libopenmpt.onRuntimeInitialized = function () {
         JSON.parse(this.responseText).forEach(function(fav) {
           favList.push({title: fav[0], id: fav[1]});
         });
-        console.log(`${favList.length} favourites loaded.`);
+        document.getElementById('title').innerHTML = `press play to start. ${favList.length} tracks loaded`;
+
         songList = shuffleArray(favList);
+
+        // preload first 2 tracks
         preloadTrack(songList[0].id);
         preloadTrack(songList[1].id);
       }
@@ -121,16 +124,19 @@ libopenmpt.onRuntimeInitialized = function () {
       }
       turnButtonToPause();
       enableSliders();
+      enableNextButton();
     }
   }
 
   function pressNextButton() {
-    isPlaying = true;
-    incrementSongIndex();
-    loadURL(songList[songIndex].id);
-    turnButtonToPause();
-    enableSliders();
-    preloadNextTrack();
+    if (!document.getElementById('next').classList.contains('disabled-button')) {
+      isPlaying = true;
+      incrementSongIndex();
+      loadURL(songList[songIndex].id);
+      turnButtonToPause();
+      enableSliders();
+      preloadNextTrack();
+    }
   }
 
   function pressPreviousButton() {
@@ -172,6 +178,10 @@ libopenmpt.onRuntimeInitialized = function () {
   function enableSliders() {
     document.getElementById('tempo').disabled = false;
     document.getElementById('pitch').disabled = false;
+  }
+
+  function enableNextButton() {
+    document.getElementById('next').classList.remove("disabled-button");
   }
 
   function disableSliders() {
