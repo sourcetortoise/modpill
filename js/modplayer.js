@@ -3,7 +3,7 @@ var modArchivePageLink = "https://modarchive.org/index.php?request=view_by_modul
 
 window['libopenmpt'] = {};
 libopenmpt.locateFile = function (filename) {
-  return "//cdn.jsdelivr.net/gh/deskjet/chiptune2.js@master/" + filename;
+  return "js/" + filename;
 };
 
 libopenmpt.onRuntimeInitialized = function () {
