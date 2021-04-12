@@ -57,15 +57,15 @@ ChiptuneJsPlayer.prototype.duration = function() {
 }
 
 ChiptuneJsPlayer.prototype.getCurrentRow = function() {
-  return libopenmpt._openmpt_module_get_current_row(this.currentPlayingNode.modulePtr);  
+  return libopenmpt._openmpt_module_get_current_row(this.currentPlayingNode.modulePtr);
 }
 
 ChiptuneJsPlayer.prototype.getCurrentPattern = function() {
-  return libopenmpt._openmpt_module_get_current_pattern(this.currentPlayingNode.modulePtr);  
+  return libopenmpt._openmpt_module_get_current_pattern(this.currentPlayingNode.modulePtr);
 }
 
 ChiptuneJsPlayer.prototype.getCurrentOrder = function() {
-  return libopenmpt._openmpt_module_get_current_order(this.currentPlayingNode.modulePtr);  
+  return libopenmpt._openmpt_module_get_current_order(this.currentPlayingNode.modulePtr);
 }
 
 ChiptuneJsPlayer.prototype.metadata = function() {
