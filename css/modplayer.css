@@ -15,6 +15,13 @@ body {
   background: linear-gradient(#7eff8e, #96de83);*/
   background-color: #7eff8e;
   background-size: cover;
+
+  -ms-user-select:none;
+  -moz-user-select:none;
+  -webkit-user-select:none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  user-select:none;
 }
 
 span, h1, h2, h3, h4, h5, h6, p {
@@ -92,12 +99,13 @@ a:active {
   background-color: #505050;
   display: inline-block;
   box-shadow: 0px 9px 0px #323232, 0px 9px 25px rgba(0, 0, 0, 0.7);
-  transition: all 0.1s ease;
+  transition: all 0.2s ease;
   cursor: pointer;
   filter: brightness(100%);
 }
 .control:active, .control.pressed {
-  box-shadow: 0px 3px 0px #323232, 0px 3px 6px rgba(0, 0, 0, 0.7);
+  box-shadow: 0px 3px 0px #323232, 0px 7px 20px rgba(0, 0, 0, 0.7);
+  transform: translate(0, 5px);
 }
 .control#play {
   background-image: url("../img/play.svg");
