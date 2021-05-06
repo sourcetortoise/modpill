@@ -28,6 +28,10 @@ span, h1, h2, h3, h4, h5, h6, p {
   cursor: default;
 }
 
+a {
+  color: black;
+}
+
 a:focus {
   outline: none;
 }
@@ -99,7 +103,7 @@ a:active {
   background-color: #505050;
   display: inline-block;
   box-shadow: 0px 9px 0px #323232, 0px 9px 25px rgba(0, 0, 0, 0.7);
-  transition: all 0.2s ease;
+  transition: all 0.1s ease;
   cursor: pointer;
   filter: brightness(100%);
 }
