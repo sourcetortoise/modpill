@@ -16,9 +16,21 @@ libopenmpt.onRuntimeInitialized = function () {
   var isLooping = false;
   var currentConfig = new ChiptuneJsConfig(0);
 
+  // create player with config and set default loop behaviour
   function initPlayer() {
     if (player == undefined) {
       player = new ChiptuneJsPlayer(currentConfig);
+      setLoopBehaviour();
+    }
+  }
+
+  function setLoopBehaviour() {
+    if (isLooping) {
+      player.onEnded(function () {
+        // TODO make this better. does not loop cleanly
+        loadURL(songList[songIndex].id)
+      });
+    } else {
       player.onEnded(function () {
         pressNextButton();
       });
@@ -75,6 +87,13 @@ libopenmpt.onRuntimeInitialized = function () {
     } else {
       preloadTrack(songList[songIndex + 1].id);
     }
+  }
+
+  function preloadIcons() {
+    var img = new Image();
+    var img2 = new Image();
+    img.src = "img/pause.svg";
+    img2.src = "img/loop-active.svg";
   }
 
   function getFavouritesList() {
@@ -212,26 +231,8 @@ libopenmpt.onRuntimeInitialized = function () {
   function toggleLoop() {
     // only works when it's enabled / playing
     if (!document.getElementById('loop').classList.contains('disabled-button')) {
-
-      if (isLooping) {
-        // turning off loop
-        isLooping = false;
-        if (player) {
-          player.onEnded(function () {
-            // no loop, go to next
-            pressNextButton();
-          });
-        }
-      } else {
-        // turning on loop
-        isLooping = true;
-        if (player) {
-          player.onEnded(function () {
-            // let it loop
-            loadURL(songList[songIndex].id)
-          });
-        }
-      }
+      isLooping = !isLooping;
+      setLoopBehaviour();
       enableAndUpdateLoopButton();
     }
   }
@@ -276,4 +277,5 @@ libopenmpt.onRuntimeInitialized = function () {
   });
 
   getFavouritesList();
+  preloadIcons();
 };
