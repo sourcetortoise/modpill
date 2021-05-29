@@ -13,11 +13,15 @@ libopenmpt.onRuntimeInitialized = function () {
   var isPlaying = false;
   var isPaused = false;
   var tempoPitchReset = false;
-  var loop = true;
+  var isLooping = false;
+  var currentConfig = new ChiptuneJsConfig(0);
 
   function initPlayer() {
     if (player == undefined) {
-      player = new ChiptuneJsPlayer(new ChiptuneJsConfig(-1));
+      player = new ChiptuneJsPlayer(currentConfig);
+      player.onEnded(function () {
+        pressNextButton();
+      });
     }
   }
 
@@ -76,6 +80,7 @@ libopenmpt.onRuntimeInitialized = function () {
   function getFavouritesList() {
     var request = new XMLHttpRequest();
     request.open('GET', 'https://www.christiandewolf.com/mods');
+    //request.open('GET', 'https://www.christiandewolf.com/testmods');  // shorter songs
     request.setRequestHeader('Content-Type', 'application/json');
 
     request.onreadystatechange = function () {
@@ -125,6 +130,7 @@ libopenmpt.onRuntimeInitialized = function () {
       turnButtonToPause();
       enableSliders();
       enableNextButton();
+      enableAndUpdateLoopButton();
     }
   }
 
@@ -203,9 +209,47 @@ libopenmpt.onRuntimeInitialized = function () {
     setSongToSliderValues(true);
   }
 
+  function toggleLoop() {
+    // only works when it's enabled / playing
+    if (!document.getElementById('loop').classList.contains('disabled-button')) {
+
+      if (isLooping) {
+        // turning off loop
+        isLooping = false;
+        if (player) {
+          player.onEnded(function () {
+            // no loop, go to next
+            pressNextButton();
+          });
+        }
+      } else {
+        // turning on loop
+        isLooping = true;
+        if (player) {
+          player.onEnded(function () {
+            // let it loop
+            loadURL(songList[songIndex].id)
+          });
+        }
+      }
+      enableAndUpdateLoopButton();
+    }
+  }
+
+  function enableAndUpdateLoopButton() {
+    document.getElementById('loop').classList.remove("disabled-button");
+    if (isLooping) {
+      document.getElementById('loop').classList.add("loop-active");
+    } else {
+      document.getElementById('loop').classList.remove("loop-active");
+    }
+  }
+
   // click handlers
   document.querySelector('#play').addEventListener('click', pressMainButton, false);
   document.querySelector('#next').addEventListener('click', pressNextButton, false);
+  document.querySelector('#loop').addEventListener('click', toggleLoop, false);
+
   document.querySelector('#pitch').addEventListener('input', function (e) {
     player.module_ctl_set('play.pitch_factor', e.target.value.toString());
   }, false);

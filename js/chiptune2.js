@@ -44,6 +44,7 @@ ChiptuneJsPlayer.prototype.addHandler = function (eventName, handler) {
 }
 
 ChiptuneJsPlayer.prototype.onEnded = function (handler) {
+  this.handlers = [];
   this.addHandler('onEnded', handler);
 }
 
@@ -140,14 +141,15 @@ ChiptuneJsPlayer.prototype.play = function(buffer) {
   if (processNode == null) {
     return;
   }
-
-  // set config options on module
-  libopenmpt._openmpt_module_set_repeat_count(processNode.modulePtr, this.config.repeatCount);
-  libopenmpt._openmpt_module_set_render_param(processNode.modulePtr, OPENMPT_MODULE_RENDER_STEREOSEPARATION_PERCENT, this.config.stereoSeparation);
-  libopenmpt._openmpt_module_set_render_param(processNode.modulePtr, OPENMPT_MODULE_RENDER_INTERPOLATIONFILTER_LENGTH, this.config.interpolationFilter);
-
+  this.reloadConfig(this.config, processNode);
   this.currentPlayingNode = processNode;
   processNode.connect(this.context.destination);
+}
+
+ChiptuneJsPlayer.prototype.reloadConfig = function(config, processNode) {
+  libopenmpt._openmpt_module_set_repeat_count(processNode.modulePtr, config.repeatCount);
+  libopenmpt._openmpt_module_set_render_param(processNode.modulePtr, OPENMPT_MODULE_RENDER_STEREOSEPARATION_PERCENT, config.stereoSeparation);
+  libopenmpt._openmpt_module_set_render_param(processNode.modulePtr, OPENMPT_MODULE_RENDER_INTERPOLATIONFILTER_LENGTH, config.interpolationFilter);
 }
 
 ChiptuneJsPlayer.prototype.stop = function() {
