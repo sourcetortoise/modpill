@@ -1,10 +1,8 @@
 # Mirth Turtle's MOD Player
 
-A more convenient way to listen to my [list of favorites](https://modarchive.org/index.php?request=view_member_favourites&query=93325) on MOD Archive.
+A more convenient way to listen to my [list of favorites on MOD Archive](https://modarchive.org/index.php?request=view_member_favourites&query=93325).
 
-[Give it a try!](https://christiancodes.github.io/mirthturtle-modplayer/)
-
-Uses Chiptune2.js.
+[Give it a try here](https://christiancodes.github.io/mirthturtle-modplayer/). Uses [Chiptune2.js](https://github.com/deskjet/chiptune2.js).
 
 ## License
 
