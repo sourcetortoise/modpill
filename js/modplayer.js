@@ -49,6 +49,8 @@ libopenmpt.onRuntimeInitialized = function () {
     } else {
       document.getElementById('artist').innerHTML = '';
     }
+
+    document.title = metadata['title'] + " – Mirth Turtle's MOD Player"
   }
 
   function setModarchiveLink(id) {
@@ -272,6 +274,9 @@ libopenmpt.onRuntimeInitialized = function () {
       e.preventDefault();
     } else if (e.key === "ArrowLeft") {
       pressPreviousButton();
+      e.preventDefault();
+    } else if (e.key === "l") {
+      toggleLoop();
       e.preventDefault();
     }
   });
