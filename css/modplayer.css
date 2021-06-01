@@ -192,3 +192,8 @@ a:active {
 #footer {
   padding-bottom: 20px;
 }
+
+.hidden {
+  position: absolute;
+  left: -1000em;;
+}
