@@ -14,7 +14,7 @@ libopenmpt.onRuntimeInitialized = function () {
   var player;
   var songList;
   var songIndex = 0;
-  var currentMetadata;
+  var currentMetadata = {};
 
   var isPlaying = false;
   var isPaused = false;
@@ -125,7 +125,8 @@ libopenmpt.onRuntimeInitialized = function () {
           favList.push({title: fav[0], id: fav[1]});
         });
 
-        document.getElementById('title').innerHTML = `press play to start • ${favList.length} tracks loaded`;
+        currentMetadata['title'] = `press play to start • ${favList.length} tracks loaded`;
+        printInfo( currentMetadata['title'] );
 
         songList = shuffleArray(favList);
         findSongFromUrlHash();
@@ -293,15 +294,19 @@ libopenmpt.onRuntimeInitialized = function () {
     sampleText.setSelectionRange(0, 99999)
     document.execCommand("copy");
 
-    printInfo("Copied!");
+    printInfo("copied!");
   }
 
   function hoverModarchiveLink() {
-    printInfo("View on Mod Archive");
+    printInfo("view on modarchive.org");
   }
 
   function hoverClipboardButton() {
-    printInfo("Copy link to clipboard");
+    printInfo("copy link to clipboard");
+  }
+
+  function hoverTurtle() {
+    printInfo("visit mirthturtle.com");
   }
 
   function showTrackInfo() {
@@ -329,10 +334,13 @@ libopenmpt.onRuntimeInitialized = function () {
 
   // hover
   document.querySelector('#modarchive-track-link').addEventListener('mouseover', hoverModarchiveLink, false);
-  document.querySelector('#clipboard-button').addEventListener('mouseover', hoverClipboardButton, false);
-
   document.querySelector('#modarchive-track-link').addEventListener('mouseout', showTrackInfo, false);
+
+  document.querySelector('#clipboard-button').addEventListener('mouseover', hoverClipboardButton, false);
   document.querySelector('#clipboard-button').addEventListener('mouseout', showTrackInfo, false);
+
+  document.querySelector('#mirthturtle-logo').addEventListener('mouseover', hoverTurtle, false);
+  document.querySelector('#mirthturtle-logo').addEventListener('mouseout', showTrackInfo, false);
 
   // TODO VOLUME CONTROLS
   // document.querySelector('#volume').addEventListener('input', function (e) {
