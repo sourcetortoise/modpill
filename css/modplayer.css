@@ -170,9 +170,11 @@ a:active {
 }
 
 .reset-container {
-  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
   text-align: center;
-  margin-top: 5px;
+  margin: 10px auto 0;
 }
 
 .reset-link {
@@ -184,8 +186,8 @@ a:active {
 }
 
 .link-img {
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   cursor: pointer;
 }
 
