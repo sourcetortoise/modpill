@@ -179,7 +179,7 @@ a:active {
   font-size: 0.7em;
 }
 
-#modarchive-track-link {
+#modarchive-track-link, #clipboard-button {
   display: none;
 }
 

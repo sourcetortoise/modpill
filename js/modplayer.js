@@ -1,4 +1,6 @@
-var shareLink = "https://christiancodes.github.io/mirthturtle-modplayer/";
+var dev = document.location.host == "localhost";
+
+var shareLink = `http${dev ? '://localhost' : 's://christiancodes.github.io'}/mirthturtle-modplayer/`;
 
 var modArchiveDownloadLink = "https://api.modarchive.org/downloads.php?moduleid=";
 var modArchivePageLink = "https://modarchive.org/index.php?request=view_by_moduleid&query=";
@@ -12,10 +14,12 @@ libopenmpt.onRuntimeInitialized = function () {
   var player;
   var songList;
   var songIndex = 0;
+  var currentMetadata;
 
   var isPlaying = false;
   var isPaused = false;
   var isLooping = false;
+
   var currentConfig = new ChiptuneJsConfig(0);
 
   // create player with config and set default loop behaviour
@@ -40,25 +44,25 @@ libopenmpt.onRuntimeInitialized = function () {
   }
 
   function showTrackMetadata(filename) {
-    var metadata = player.metadata();
-    if (metadata['title'] != '') {
-      document.getElementById('title').innerHTML = metadata['title'];
-    } else {
-      document.getElementById('title').innerHTML = filename;
+    currentMetadata = player.metadata();
+    if (!currentMetadata['title']) {
+      currentMetadata['title'] = filename;
     }
-    if (metadata['artist'] != '') {
-      document.getElementById('artist').innerHTML = '<br />' + metadata['artist'];
-    } else {
-      document.getElementById('artist').innerHTML = '';
-    }
-
-    document.title = metadata['title'] + " – Mirth Turtle's MOD Player"
+    document.title = currentMetadata['title'] + " – Mirth Turtle's MOD Player";
+    printInfo( currentMetadata['title'] );
   }
 
-  function setModarchiveLink(id) {
+  function printInfo(info) {
+    document.getElementById('title').innerHTML = info;
+  }
+
+  function setModarchiveLinkAndShow(id) {
     linkElement = document.getElementById('modarchive-track-link');
     linkElement.style = 'display: inline-block';
     linkElement.href = modArchivePageLink + id;
+
+    clipboardElement = document.getElementById('clipboard-button');
+    clipboardElement.style = 'display: inline-block';
   }
 
   function playAfterLoad(options, buffer) {
@@ -75,7 +79,7 @@ libopenmpt.onRuntimeInitialized = function () {
     initPlayer();
     player.load(path, playAfterLoad.bind(this, {'autoplay': autoplay, 'filename': path}));
 
-    setModarchiveLink(id);
+    setModarchiveLinkAndShow(id);
     setSongToSliderValues();
     if (autoplay) {
       turnButtonToPause();
@@ -160,6 +164,7 @@ libopenmpt.onRuntimeInitialized = function () {
         loadTrackById(song.id, false);
       }
     }
+    window.location.hash = "";
   }
 
   // PLAY/PAUSE BUTTONS
@@ -288,7 +293,19 @@ libopenmpt.onRuntimeInitialized = function () {
     sampleText.setSelectionRange(0, 99999)
     document.execCommand("copy");
 
-    // TODO visual feedback
+    printInfo("Copied!");
+  }
+
+  function hoverModarchiveLink() {
+    printInfo("View file on Mod Archive");
+  }
+
+  function hoverClipboardButton() {
+    printInfo("Copy link to clipboard");
+  }
+
+  function showTrackInfo() {
+    printInfo( currentMetadata['title'] );
   }
 
   // CLICK HANDLERS //
@@ -310,6 +327,12 @@ libopenmpt.onRuntimeInitialized = function () {
   document.querySelector('#reset-link').addEventListener('click', resetPitchAndTempo, false);
   document.querySelector('#clipboard-button').addEventListener('click', clipboardClick, false);
 
+  // hover
+  document.querySelector('#modarchive-track-link').addEventListener('mouseover', hoverModarchiveLink, false);
+  document.querySelector('#clipboard-button').addEventListener('mouseover', hoverClipboardButton, false);
+
+  document.querySelector('#modarchive-track-link').addEventListener('mouseout', showTrackInfo, false);
+  document.querySelector('#clipboard-button').addEventListener('mouseout', showTrackInfo, false);
 
   // TODO VOLUME CONTROLS
   // document.querySelector('#volume').addEventListener('input', function (e) {
