@@ -313,6 +313,18 @@ libopenmpt.onRuntimeInitialized = function () {
     printInfo("visit mirthturtle.com");
   }
 
+  function hoverReset() {
+    printInfo("reset tempo and pitch");
+  }
+
+  function hoverSource() {
+    printInfo("view source code");
+  }
+
+  function hoverPlaylist() {
+    printInfo("explore playlist");
+  }
+
   function showTrackInfo() {
     printInfo( currentMetadata['title'] );
   }
@@ -346,6 +358,14 @@ libopenmpt.onRuntimeInitialized = function () {
   document.querySelector('#mirthturtle-logo').addEventListener('mouseover', hoverTurtle, false);
   document.querySelector('#mirthturtle-logo').addEventListener('mouseout', showTrackInfo, false);
 
+  document.querySelector('#reset-link').addEventListener('mouseover', hoverReset, false);
+  document.querySelector('#reset-link').addEventListener('mouseout', showTrackInfo, false);
+
+  document.querySelector('#source-link').addEventListener('mouseover', hoverSource, false);
+  document.querySelector('#source-link').addEventListener('mouseout', showTrackInfo, false);
+
+  document.querySelector('#playlist-link').addEventListener('mouseover', hoverPlaylist, false);
+  document.querySelector('#playlist-link').addEventListener('mouseout', showTrackInfo, false);
   // TODO VOLUME CONTROLS
   // document.querySelector('#volume').addEventListener('input', function (e) {
   //   player.module_ctl_set('play.opl.volume_factor', e.target.value.toString());
