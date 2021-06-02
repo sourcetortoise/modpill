@@ -107,8 +107,12 @@ libopenmpt.onRuntimeInitialized = function () {
   function preloadIcons() {
     var img = new Image();
     var img2 = new Image();
+    var img3 = new Image();
+    var img4 = new Image();
     img.src = "img/pause.svg";
     img2.src = "img/loop-active.svg";
+    img3.src = "img/file.png";
+    img4.src = "img/link.png";
   }
 
   function getFavouritesList() {

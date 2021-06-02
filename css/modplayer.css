@@ -83,14 +83,19 @@ a:active {
   }
 }
 
+/* SONG TITLE / OUTPUT STRINGS */
+
 #metadata {
   display: block;
+  height: 20px;
 }
 
 #title {
   padding-left: 10px;
   padding-right: 10px;
 }
+
+/* CONTROLS */
 
 #controls {
   margin-top: 1.9rem;
@@ -174,6 +179,7 @@ a:active {
   justify-content: space-around;
   align-items: center;
   width: 200px;
+  height: 16px;
   margin: 10px auto 0;
 }
 
