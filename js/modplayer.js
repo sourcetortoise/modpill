@@ -297,7 +297,7 @@ libopenmpt.onRuntimeInitialized = function () {
   }
 
   function hoverModarchiveLink() {
-    printInfo("View file on Mod Archive");
+    printInfo("View on Mod Archive");
   }
 
   function hoverClipboardButton() {
