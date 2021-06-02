@@ -71,6 +71,7 @@ libopenmpt.onRuntimeInitialized = function () {
       player.togglePause();
     }
     showTrackMetadata(options.filename);
+    setSongToSliderValues();
   }
 
   function loadTrackById(id, autoplay = true) {
@@ -80,7 +81,6 @@ libopenmpt.onRuntimeInitialized = function () {
     player.load(path, playAfterLoad.bind(this, {'autoplay': autoplay, 'filename': path}));
 
     setModarchiveLinkAndShow(id);
-    setSongToSliderValues();
     if (autoplay) {
       turnButtonToPause();
     }
@@ -258,18 +258,16 @@ libopenmpt.onRuntimeInitialized = function () {
     document.getElementById('pitch').disabled = true;
   }
 
-  function setSongToSliderValues(force = null) {
-    if (force) {
-      var tempo = document.getElementById('tempo').value.toString();
-      player.module_ctl_set('play.tempo_factor', tempo);
-      var pitch = document.getElementById('pitch').value.toString();
-      player.module_ctl_set('play.pitch_factor', pitch);
-    }
+  function setSongToSliderValues() {
+    var tempo = document.getElementById('tempo').value.toString();
+    player.module_ctl_set('play.tempo_factor', tempo);
+    var pitch = document.getElementById('pitch').value.toString();
+    player.module_ctl_set('play.pitch_factor', pitch);
   }
 
   function resetPitchAndTempo() {
     document.querySelectorAll('#pitch,#tempo').forEach(e => e.value = 1);
-    setSongToSliderValues(true);
+    setSongToSliderValues();
   }
 
   function toggleLoop() {
