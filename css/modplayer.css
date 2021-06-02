@@ -172,8 +172,8 @@ a:active {
 .reset-container {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   width: 200px;
-  text-align: center;
   margin: 10px auto 0;
 }
 
