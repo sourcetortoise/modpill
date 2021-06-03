@@ -320,7 +320,7 @@ libopenmpt.onRuntimeInitialized = function () {
   }
 
   function hoverPlaylist() {
-    printInfo("explore playlist");
+    printInfo("browse playlist");
   }
 
   function showTrackInfo() {
