@@ -14,7 +14,7 @@ libopenmpt.onRuntimeInitialized = function () {
   var player;
   var songList;
   var songIndex = 0;
-  var currentMetadata = {};
+  var currentMetadata = {'title': 'loading...'};
 
   var isPlaying = false;
   var isPaused = false;
