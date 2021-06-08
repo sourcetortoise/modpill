@@ -28,6 +28,10 @@ span, h1, h2, h3, h4, h5, h6, p {
   cursor: default;
 }
 
+input[type="range"] {
+  cursor: pointer;
+}
+
 a {
   color: black;
 }
@@ -158,7 +162,7 @@ a:active {
 #super-slider-box {
   display: flex;
   max-width: 300px;
-  margin: 0 auto;
+  margin: 0 auto 10px;
 
 }
 #sliders {
@@ -185,6 +189,16 @@ a:active {
   width: 50px;
   height: 100px;
   margin-top: 30px;
+}
+@media only screen and (max-width: 30rem) {
+  #volume {
+    display: none;
+  }
+}
+@media only screen and (min-width: 30rem) {
+  #volume {
+    display: block;
+  }
 }
 
 .reset-container {
