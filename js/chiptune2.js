@@ -83,6 +83,7 @@ ChiptuneJsPlayer.prototype.metadata = function() {
 }
 
 ChiptuneJsPlayer.prototype.module_ctl_set = function(ctl, value) {
+  // docs here  –  https://lib.openmpt.org/doc/classopenmpt_1_1module.html
   return libopenmpt.ccall('openmpt_module_ctl_set', 'number', ['number', 'string', 'string'], [this.currentPlayingNode.modulePtr, ctl, value]) === 1;
 }
 

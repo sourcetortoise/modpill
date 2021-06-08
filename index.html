@@ -47,19 +47,23 @@
       <a id="play" class="control"></a>
       <a id="next" class="control disabled-button"></a>
       <br>
-      <div id="sliders">
-        <div>
-          <label for="tempo">Tempo</label>
-          <input id="tempo" type="range" min="0.01" max="2" step="0.01" disabled="disabled">
+
+      <div id="super-slider-box">
+        <div id="sliders" class="slider-panel">
+          <div>
+            <label for="tempo">Tempo</label>
+            <input id="tempo" type="range" min="0.01" max="2" step="0.01" disabled="disabled">
+          </div>
+          <div>
+            <label for="pitch">Pitch</label>
+            <input id="pitch" type="range" min="0.01" max="2" step="0.01" disabled="disabled">
+          </div>
         </div>
-        <div>
-          <label for="pitch">Pitch</label>
-          <input id="pitch" type="range" min="0.01" max="2" step="0.01" disabled="disabled">
+        <div id="slider-vertical" class="slider-panel">
+          <div>
+            <input id="volume" type="range" min="0.01" max="2" step="0.01" disabled="disabled">
+          </div>
         </div>
-       <!--  <div>
-          <label for="volume">Volume</label>
-          <input id="volume" type="range" min="0.01" max="2" step="0.01">
-        </div> -->
       </div>
 
       <div class="reset-container">

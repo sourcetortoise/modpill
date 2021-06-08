@@ -155,14 +155,20 @@ a:active {
   background-repeat: no-repeat;
 }
 
+#super-slider-box {
+  display: flex;
+  max-width: 300px;
+  margin: 0 auto;
+
+}
 #sliders {
   display: inline-flex;
   flex-direction: column;
   margin: 1.9rem 0 0 auto;
-  text-align: left;
   border-radius: 0.35rem;
   border: 1px solid rgba(32, 61, 24, 0.78);
   padding: 1rem;
+  margin-left: 25px;
   background: #f7f7f7;
   line-height: 2;
 }
@@ -172,6 +178,13 @@ a:active {
 }
 #sliders > div > input {
   margin-left: 1rem;
+}
+#volume {
+  writing-mode: bt-lr; /* IE */
+  -webkit-appearance: slider-vertical; /* WebKit */
+  width: 50px;
+  height: 100px;
+  margin-top: 30px;
 }
 
 .reset-container {

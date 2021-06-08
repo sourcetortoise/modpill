@@ -20,6 +20,8 @@ libopenmpt.onRuntimeInitialized = function () {
   var isPaused = false;
   var isLooping = false;
 
+  var gain = 1;
+
   var currentConfig = new ChiptuneJsConfig(0);
 
   // create player with config and set default loop behaviour
@@ -71,6 +73,13 @@ libopenmpt.onRuntimeInitialized = function () {
       player.togglePause();
     }
     showTrackMetadata(options.filename);
+
+    // volume hack
+    gain = player.context.createGain();  // create a GainNode
+    gain.connect(player.context.destination); // wire gain to speaker output
+    player.currentPlayingNode.disconnect();  // disconnect internal ScriptProcessorNode from speakers
+    player.currentPlayingNode.connect(gain); // wire script processor to gain
+
     setSongToSliderValues();
   }
 
@@ -129,7 +138,7 @@ libopenmpt.onRuntimeInitialized = function () {
           favList.push({title: fav[0], id: fav[1]});
         });
 
-        currentMetadata['title'] = `press play to start • ${favList.length} tracks loaded`;
+        currentMetadata['title'] = `Press play to start • ${favList.length} tracks loaded`;
         printInfo( currentMetadata['title'] );
 
         songList = shuffleArray(favList);
@@ -231,14 +240,14 @@ libopenmpt.onRuntimeInitialized = function () {
   }
 
   function turnButtonToPlay() {
-    var button = document.getElementById('pause')
+    var button = document.getElementById('pause');
     if (button) {
       button.id = "play";
     }
   }
 
   function turnButtonToPause() {
-    var button = document.getElementById('play')
+    var button = document.getElementById('play');
     if (button) {
       button.id = "pause";
     }
@@ -247,6 +256,7 @@ libopenmpt.onRuntimeInitialized = function () {
   function enableSliders() {
     document.getElementById('tempo').disabled = false;
     document.getElementById('pitch').disabled = false;
+    document.getElementById('volume').disabled = false;
   }
 
   function enableNextButton() {
@@ -256,6 +266,7 @@ libopenmpt.onRuntimeInitialized = function () {
   function disableSliders() {
     document.getElementById('tempo').disabled = true;
     document.getElementById('pitch').disabled = true;
+    document.getElementById('volume').disabled = true;
   }
 
   function setSongToSliderValues() {
@@ -263,6 +274,8 @@ libopenmpt.onRuntimeInitialized = function () {
     player.module_ctl_set('play.tempo_factor', tempo);
     var pitch = document.getElementById('pitch').value.toString();
     player.module_ctl_set('play.pitch_factor', pitch);
+    var volume = document.getElementById('volume').value.toString();
+    gain.gain.value = volume;
   }
 
   function resetPitchAndTempo() {
@@ -336,11 +349,15 @@ libopenmpt.onRuntimeInitialized = function () {
 
   // sliders
   document.querySelector('#pitch').addEventListener('input', function (e) {
-    player.module_ctl_set('play.pitch_factor', e.target.value.toString());
+    setSongToSliderValues();
   }, false);
   document.querySelector('#tempo').addEventListener('input', function (e) {
-    player.module_ctl_set('play.tempo_factor', e.target.value.toString());
+    setSongToSliderValues();
   }, false);
+  document.querySelector('#volume').addEventListener('input', function (e) {
+    setSongToSliderValues();
+  }, false);
+
 
   // links and buttons
   document.querySelector('#reset-link').addEventListener('click', resetPitchAndTempo, false);
@@ -364,10 +381,6 @@ libopenmpt.onRuntimeInitialized = function () {
 
   document.querySelector('#playlist-link').addEventListener('mouseover', hoverPlaylist, false);
   document.querySelector('#playlist-link').addEventListener('mouseout', showTrackInfo, false);
-  // TODO VOLUME CONTROLS
-  // document.querySelector('#volume').addEventListener('input', function (e) {
-  //   player.module_ctl_set('play.opl.volume_factor', e.target.value.toString());
-  // }, false);
 
   // key handlers for pause/next
   window.addEventListener("keydown", function(e) {
