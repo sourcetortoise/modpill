@@ -87,6 +87,26 @@ ChiptuneJsPlayer.prototype.module_ctl_set = function(ctl, value) {
   return libopenmpt.ccall('openmpt_module_ctl_set', 'number', ['number', 'string', 'string'], [this.currentPlayingNode.modulePtr, ctl, value]) === 1;
 }
 
+// CUSTOM
+
+ChiptuneJsPlayer.prototype.get_num_channels = function(value) {
+  return libopenmpt.ccall('openmpt_module_get_num_channels', 'number', ['number'], [this.currentPlayingNode.modulePtr]);
+}
+
+ChiptuneJsPlayer.prototype.get_num_instruments = function(value) {
+  return libopenmpt.ccall('openmpt_module_get_num_instruments', 'number', ['number'], [this.currentPlayingNode.modulePtr]);
+}
+
+ChiptuneJsPlayer.prototype.set_channel_mute_status = function(channel, mutebool) {
+  return libopenmpt.ccall('openmpt_module_ext_interactive_set_channel_mute_status', 'number', ['number', 'number', 'boolean'], [this.currentPlayingNode.modulePtr, channel, mutebool]) === 1;
+}
+
+// TODO:
+// GET CURRENTLY PLAYING INSTRUMENTS/CHANNELS
+
+
+//////
+
 // playing, etc
 ChiptuneJsPlayer.prototype.unlock = function() {
 

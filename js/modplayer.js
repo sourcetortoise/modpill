@@ -21,6 +21,9 @@ libopenmpt.onRuntimeInitialized = function () {
   var isLooping = false;
 
   var gain = 1;
+  var numInstruments = 0;
+  var numChannels = 0;
+  var mutedChannels = [];
 
   var currentConfig = new ChiptuneJsConfig(0);
 
@@ -81,6 +84,9 @@ libopenmpt.onRuntimeInitialized = function () {
     player.currentPlayingNode.connect(gain); // wire script processor to gain
 
     setSongToSliderValues();
+
+    numInstruments = player.get_num_instruments();
+    numChannels = player.get_num_channels();
   }
 
   function loadTrackById(id, autoplay = true) {
@@ -340,6 +346,15 @@ libopenmpt.onRuntimeInitialized = function () {
     printInfo( currentMetadata['title'] );
   }
 
+  function setChannelMuteStatus(channel, mutebool) {
+    console.log('muting', channel);
+    player.set_channel_mute_status(channel, mutebool);
+  }
+
+  function updateChannelMutes() {
+
+  }
+
   // CLICK HANDLERS //
 
   // main buttons
@@ -398,6 +413,11 @@ libopenmpt.onRuntimeInitialized = function () {
       e.preventDefault();
     }
   });
+
+  document.querySelector('#channel-1').addEventListener('click', (chan) => setChannelMuteStatus(1, true), false);
+  document.querySelector('#channel-2').addEventListener('click', (chan) => setChannelMuteStatus(2, true), false);
+  document.querySelector('#channel-3').addEventListener('click', (chan) => setChannelMuteStatus(3, true), false);
+  document.querySelector('#channel-4').addEventListener('click', (chan) => setChannelMuteStatus(4, true), false);
 
   // ON START
   getFavouritesList();

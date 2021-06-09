@@ -224,6 +224,10 @@ a:active {
   cursor: pointer;
 }
 
+#channel-muter {
+  margin: 2rem;
+}
+
 #footer {
   padding-bottom: 20px;
 }
