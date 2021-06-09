@@ -337,6 +337,14 @@ libopenmpt.onRuntimeInitialized = function () {
     printInfo("browse playlist");
   }
 
+  function hoverDayNight() {
+    if (nightMode) {
+      printInfo("day mode");
+    } else {
+      printInfo("night mode");
+    }
+  }
+
   function showTrackInfo() {
     printInfo( currentMetadata['title'] );
   }
@@ -371,12 +379,15 @@ libopenmpt.onRuntimeInitialized = function () {
   // sliders
   document.querySelector('#pitch').addEventListener('input', function (e) {
     setSongToSliderValues();
+    printInfo(`pitch: ${Math.round(document.getElementById('pitch').value*100).toString()}%`);
   }, false);
   document.querySelector('#tempo').addEventListener('input', function (e) {
     setSongToSliderValues();
+    printInfo(`tempo: ${Math.round(document.getElementById('tempo').value*100).toString()}%`);
   }, false);
   document.querySelector('#volume').addEventListener('input', function (e) {
     setSongToSliderValues();
+    printInfo(`volume: ${Math.round(document.getElementById('volume').value*100).toString()}%`);
   }, false);
 
 
@@ -404,6 +415,12 @@ libopenmpt.onRuntimeInitialized = function () {
   document.querySelector('#playlist-link').addEventListener('mouseover', hoverPlaylist, false);
   document.querySelector('#playlist-link').addEventListener('mouseout', showTrackInfo, false);
 
+  document.querySelector('#day-night-link').addEventListener('mouseover', hoverDayNight, false);
+  document.querySelector('#day-night-link').addEventListener('mouseout', showTrackInfo, false);
+
+  document.querySelector('#volume').addEventListener('mouseout', showTrackInfo, false);
+  document.querySelector('#pitch').addEventListener('mouseout', showTrackInfo, false);
+  document.querySelector('#tempo').addEventListener('mouseout', showTrackInfo, false);
   // key handlers for pause/next
   window.addEventListener("keydown", function(e) {
     if (e.key === " " ) {
