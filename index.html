@@ -21,6 +21,7 @@
 
   <link rel="stylesheet" href="css/normalize.min.css">
   <link rel="stylesheet" href="css/modplayer.css">
+  <link rel="stylesheet" href="css/nightmode.css" id="nightmode-css" disabled="disabled">
 
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
@@ -68,13 +69,13 @@
 
       <div class="reset-container">
         <a id="modarchive-track-link" target="blank">
-          <img src="img/file.png" class="link-img"></span>
+          <img src="img/file.png" class="link-img" id="track-file-image"></span>
         </a>
 
         <a id="reset-link" class="reset-link" href="javascript: void(0)">Reset</a>
 
         <a id="clipboard-button">
-          <img src="img/link.png" class="link-img"></span>
+          <img src="img/link.png" class="link-img" id="track-share-image"></span>
         </a>
       </div>
 
@@ -83,6 +84,8 @@
 
     <div id="footer" class="banner">
       <a id="source-link" href="https://github.com/christiancodes/mirthturtle-modplayer" target="blank">Source</a>
+      <span>•</span>
+      <a id="day-night-link" class="day-night-link" href="javascript: void(0)">☾</a>
       <span>•</span>
       <a id="playlist-link" href="https://modarchive.org/index.php?request=view_member_favourites&query=93325" target="blank">Playlist</a>
     </div>

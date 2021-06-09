@@ -1,0 +1,56 @@
+body {
+  background-color: #6164be;
+}
+
+a, span {
+  color: white !important;
+}
+
+a:active {
+  color: #5581ff;
+}
+
+#headline {
+  background: #25252a;
+  color: white;
+}
+
+.control {
+  background-color: #505050;
+  box-shadow: 0px 9px 0px #323232, 0px 9px 25px rgba(224, 227, 255, 0.7);
+  filter: brightness(100%);
+}
+.control:active, .control.pressed {
+  box-shadow: 0px 3px 0px #323232, 0px 7px 20px rgba(224, 227, 255, 0.7);
+}
+.control#play {
+  background-image: url("../img/play.svg");
+}
+.control#next {
+  background-image: url("../img/next.png");
+}
+.control#loop {
+  background-image: url("../img/loop.svg");
+}
+.loop-active {
+  background-image: url("../img/loop-active.svg") !important;
+}
+
+.disabled-button {
+  filter: brightness(60%);
+}
+.control#pause {
+  background-image: url("../img/pause.svg");
+}
+.control#loop + label {
+  background-image: url("../img/loop.svg");
+}
+
+#sliders {
+  border: 1px solid rgba(32, 61, 24, 0.78);
+  background: #484955;
+}
+
+label {
+  color: white;
+}

@@ -9,10 +9,6 @@ html, body {
 }
 
 body {
-/*  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #7eff8e), color-stop(100%, #96de83));
-  background: -moz-linear-gradient(#7eff8e, #96de83);
-  background: -webkit-linear-gradient(#7eff8e, #96de83);
-  background: linear-gradient(#7eff8e, #96de83);*/
   background-color: #7eff8e;
   background-size: cover;
 
@@ -222,6 +218,10 @@ a:active {
   width: 16px;
   height: 16px;
   cursor: pointer;
+}
+
+.day-night-link {
+  text-decoration: none;
 }
 
 #footer {

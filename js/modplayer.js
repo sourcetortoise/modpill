@@ -23,6 +23,7 @@ libopenmpt.onRuntimeInitialized = function () {
   var gain = 1;
 
   var currentConfig = new ChiptuneJsConfig(0);
+  var nightMode = false;
 
   // create player with config and set default loop behaviour
   function initPlayer() {
@@ -340,6 +341,26 @@ libopenmpt.onRuntimeInitialized = function () {
     printInfo( currentMetadata['title'] );
   }
 
+  function toggleDayAndNight() {
+    var toggleLink = document.getElementById('day-night-link');
+    var stylesheet = document.getElementById('nightmode-css');
+    var fileIcon = document.getElementById('track-file-image');
+    var shareIcon = document.getElementById('track-share-image');
+
+    nightMode = !nightMode;
+    if (nightMode) {
+      toggleLink.text = "☀"
+      stylesheet.disabled = '';
+      fileIcon.src = "img/file-white.png";
+      shareIcon.src = "img/link-white.png";
+    } else {
+      toggleLink.text = "☾"
+      stylesheet.disabled = 'disabled';
+      fileIcon.src = "img/file.png";
+      shareIcon.src = "img/link.png";
+    }
+  }
+
   // CLICK HANDLERS //
 
   // main buttons
@@ -362,6 +383,7 @@ libopenmpt.onRuntimeInitialized = function () {
   // links and buttons
   document.querySelector('#reset-link').addEventListener('click', resetPitchAndTempo, false);
   document.querySelector('#clipboard-button').addEventListener('click', clipboardClick, false);
+  document.querySelector('#day-night-link').addEventListener('click', toggleDayAndNight, false);
 
   // hover
   document.querySelector('#modarchive-track-link').addEventListener('mouseover', hoverModarchiveLink, false);
