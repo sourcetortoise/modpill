@@ -339,9 +339,9 @@ libopenmpt.onRuntimeInitialized = function () {
 
   function hoverDayNight() {
     if (nightMode) {
-      printInfo("day mode");
+      printInfo("work mode");
     } else {
-      printInfo("night mode");
+      printInfo("party mode");
     }
   }
 
