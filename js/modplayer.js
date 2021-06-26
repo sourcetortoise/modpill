@@ -12,7 +12,7 @@ libopenmpt.locateFile = function (filename) {
 
 libopenmpt.onRuntimeInitialized = function () {
   var player;
-  var songList;
+  var songList = [];
   var songIndex = 0;
   var currentMetadata = {'title': 'loading...'};
 
@@ -193,17 +193,19 @@ libopenmpt.onRuntimeInitialized = function () {
       turnButtonToPlay();
       disableSliders();
     } else {
-      // START PLAY
-      isPlaying = true;
-      if (isPaused) {
-        player.togglePause();
-      } else {
-        loadTrackById(songList[songIndex].id);
+      // START PLAY (if loaded)
+      if (songList.length > 0) {
+        isPlaying = true;
+        if (isPaused) {
+          player.togglePause();
+        } else {
+          loadTrackById(songList[songIndex].id);
+        }
+        turnButtonToPause();
+        enableSliders();
+        enableNextButton();
+        enableAndUpdateLoopButton();
       }
-      turnButtonToPause();
-      enableSliders();
-      enableNextButton();
-      enableAndUpdateLoopButton();
     }
   }
 
