@@ -127,8 +127,8 @@ libopenmpt.onRuntimeInitialized = function () {
 
   function getFavouritesList() {
     var request = new XMLHttpRequest();
-    request.open('GET', 'https://www.christiandewolf.com/mods');
-    //request.open('GET', 'https://www.christiandewolf.com/testmods');  // shorter songs
+    request.open('GET', 'https://www.myshimari.com/mods');
+    //request.open('GET', 'https://www.myshimari.com/testmods');  // shorter songs
     request.setRequestHeader('Content-Type', 'application/json');
 
     request.onreadystatechange = function () {
