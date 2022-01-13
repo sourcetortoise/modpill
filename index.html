@@ -2,14 +2,14 @@
 <html class="no-js">
 
 <head>
+  <title>Mirth Turtle's MOD Player</title>
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Mirth Turtle's MOD Player</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <meta name="description" content="An Amiga MOD jukebox with an awesome curated playlist.">
 
-  <meta content='https://github.com/christiancodes/mirthturtle-modplayer/raw/7798235e97a2a98269ad9415fb0da9ea0d040b66/img/modplayer-cover.png' property='og:image'>
   <meta content="Mirth Turtle's MOD Player" property='og:title'>
   <meta content='https://christiancodes.github.io/mirthturtle-modplayer/' property='og:url'>
   <meta content='An Amiga MOD jukebox with an awesome curated playlist.' property='og:description'>
@@ -17,6 +17,7 @@
   <meta content='@mirthturtle' name='twitter:site'>
   <meta content="Mirth Turtle's MOD Player" name='twitter:title'>
   <meta content='An Amiga MOD jukebox with an awesome curated playlist.' name='twitter:description'>
+  <meta content='https://github.com/christiancodes/mirthturtle-modplayer/raw/7798235e97a2a98269ad9415fb0da9ea0d040b66/img/modplayer-cover.png' property='og:image'>
   <meta content='https://github.com/christiancodes/mirthturtle-modplayer/raw/7798235e97a2a98269ad9415fb0da9ea0d040b66/img/modplayer-cover.png' name='twitter:image'>
 
   <link rel="stylesheet" href="css/normalize.min.css">
@@ -25,9 +26,10 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
+  <script type="text/javascript" src="js/favlist.js"></script>
   <script type="text/javascript" src="js/modplayer.js"></script>
-  <script type="text/javascript" src="js/libopenmpt.js"></script>
-  <script type="text/javascript" src="js/chiptune2.js"></script>
+  <script type="text/javascript" src="js/libopenmpt.js" async></script>
+  <script type="text/javascript" src="js/chiptune2.js" async></script>
 </head>
 
 <body>
@@ -38,6 +40,7 @@
       </a>
       <h1>mirthturtle-modplayer</h1>
     </div>
+
     <div id="metadata" class="banner">
       <span id="title">loading...</span>
       <span id="artist"></span>

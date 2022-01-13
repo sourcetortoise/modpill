@@ -220,8 +220,13 @@ a:active {
   cursor: pointer;
 }
 
-.day-night-link {
+.day-night-link, .lock-link {
   text-decoration: none;
+}
+
+.lock-icon {
+  width: 13px;
+  height: 13px;
 }
 
 #footer {

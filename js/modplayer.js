@@ -262,9 +262,10 @@ libopenmpt.onRuntimeInitialized = function () {
     document.getElementById('volume').disabled = false;
   }
 
-  function enableNextButton() {
-    document.getElementById('next').classList.remove("disabled-button");
-  }
+  function enableNextButton()  { document.getElementById('next').classList.remove("disabled-button"); }
+  function disableNextButton() { document.getElementById('next').classList.add("disabled-button"); }
+  function disableLoopButton() { document.getElementById('loop').classList.add("disabled-button"); }
+
 
   function disableSliders() {
     document.getElementById('tempo').disabled = true;
@@ -315,35 +316,31 @@ libopenmpt.onRuntimeInitialized = function () {
     printInfo("copied!");
   }
 
-  function hoverModarchiveLink() {
-    printInfo("view on modarchive.org");
-  }
-
-  function hoverClipboardButton() {
-    printInfo("copy link to clipboard");
-  }
-
-  function hoverTurtle() {
-    printInfo("visit mirthturtle.com");
-  }
-
-  function hoverReset() {
-    printInfo("reset tempo and pitch");
-  }
-
-  function hoverSource() {
-    printInfo("view source code");
-  }
-
-  function hoverPlaylist() {
-    printInfo("browse playlist");
-  }
+  // HOVERS
+  function hoverModarchiveLink()  { printInfo("view on modarchive.org"); }
+  function hoverClipboardButton() { printInfo("copy link to clipboard"); }
+  function hoverTurtle()   { printInfo("visit mirthturtle.com"); }
+  function hoverReset()    { printInfo("reset tempo and pitch"); }
+  function hoverSource()   { printInfo("view source code"); }
+  function hoverPlaylist() { printInfo("browse playlist");  }
 
   function hoverDayNight() {
     if (nightMode) {
       printInfo("work mode");
     } else {
       printInfo("party mode");
+    }
+  }
+
+  function hoverLockIcon() {
+    if (isPlaying) {
+      if (locked) {
+        printInfo("unlock controls");
+      } else {
+        printInfo("lock controls for mobile");
+      }
+    } else {
+      printInfo("lock controls when playing");
     }
   }
 
