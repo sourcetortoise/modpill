@@ -127,17 +127,21 @@ libopenmpt.onRuntimeInitialized = function () {
 
   function getFavouritesList() {
     var request = new XMLHttpRequest();
-    request.open('GET', 'https://www.myshimari.com/mods');
-    //request.open('GET', 'https://www.myshimari.com/testmods');  // shorter songs
+    request.open('GET', 'https://www.myshimari.com/mods');  // call /testmods for shorter songs
     request.setRequestHeader('Content-Type', 'application/json');
 
     request.onreadystatechange = function () {
+      var favList = [];
       if (this.readyState === 4) {
-        // put together the playlist
-        var favList = [];
-        JSON.parse(this.responseText).forEach(function(fav) {
-          favList.push({title: fav[0], id: fav[1]});
-        });
+        try {
+          JSON.parse(this.responseText).forEach(function(fav) {
+            favList.push({title: fav[0], id: fav[1]});
+          });
+        } catch (error) {
+          console.error("API error", error);
+          // bad API return – use local playlist
+          favList = getOfflineList();
+        }
 
         currentMetadata['title'] = `Press play to start • ${favList.length} tracks loaded`;
         printInfo( currentMetadata['title'] );
@@ -155,6 +159,14 @@ libopenmpt.onRuntimeInitialized = function () {
       }
     };
     request.send();
+  }
+
+  function getOfflineList() {
+    var list = [];
+    offlineFavList.forEach(function(fav) {
+      list.push({title: fav[0], id: fav[1]})
+    });
+    return list;
   }
 
   function shuffleArray(arr) {
@@ -347,6 +359,8 @@ libopenmpt.onRuntimeInitialized = function () {
   function showTrackInfo() {
     printInfo( currentMetadata['title'] );
   }
+
+  // PARTY MODE
 
   function toggleDayAndNight() {
     var toggleLink = document.getElementById('day-night-link');
