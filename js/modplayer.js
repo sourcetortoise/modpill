@@ -22,7 +22,7 @@ libopenmpt.onRuntimeInitialized = function () {
 
   var gain = 1;
 
-  var currentConfig = new ChiptuneJsConfig(0);
+  var currentConfig = new ChiptuneJsConfig(0, 100);
   var nightMode = false;
 
   // create player with config and set default loop behaviour
