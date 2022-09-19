@@ -25,6 +25,8 @@ libopenmpt.onRuntimeInitialized = function () {
   var currentConfig = new ChiptuneJsConfig(0, 100);
   var nightMode = false;
 
+  var locked = false;
+
   // create player with config and set default loop behaviour
   function initPlayer() {
     if (player == undefined) {
@@ -385,6 +387,32 @@ libopenmpt.onRuntimeInitialized = function () {
     }
   }
 
+  // LOCKING
+
+  function toggleLocked() {
+    // you can only lock if it's playing
+    if (isPlaying) {
+
+    }
+  }
+
+  function lockClick() {
+    if (isPlaying) {
+      if (locked) {
+        locked = false;
+      } else {
+        locked = true;
+      }
+      updateLockState();
+    }
+  }
+
+  function updateLockState() {
+    locked ? disableSliders() : enableSliders();
+    locked ? disableNextButton() : enableNextButton();
+    locked ? disableLoopButton() : enableAndUpdateLoopButton();
+  }
+
   // CLICK HANDLERS //
 
   // main buttons
@@ -411,6 +439,7 @@ libopenmpt.onRuntimeInitialized = function () {
   document.querySelector('#reset-link').addEventListener('click', resetPitchAndTempo, false);
   document.querySelector('#clipboard-button').addEventListener('click', clipboardClick, false);
   document.querySelector('#day-night-link').addEventListener('click', toggleDayAndNight, false);
+  document.querySelector('#lock-link').addEventListener('click', lockClick, false);
 
   // hover
   document.querySelector('#modarchive-track-link').addEventListener('mouseover', hoverModarchiveLink, false);
@@ -437,6 +466,10 @@ libopenmpt.onRuntimeInitialized = function () {
   document.querySelector('#volume').addEventListener('mouseout', showTrackInfo, false);
   document.querySelector('#pitch').addEventListener('mouseout', showTrackInfo, false);
   document.querySelector('#tempo').addEventListener('mouseout', showTrackInfo, false);
+
+  document.querySelector('#lock-link').addEventListener('mouseover', hoverLockIcon, false);
+  document.querySelector('#lock-link').addEventListener('mouseout', showTrackInfo, false);
+
   // key handlers for pause/next
   window.addEventListener("keydown", function(e) {
     if (e.key === " " ) {
