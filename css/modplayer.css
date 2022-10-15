@@ -45,10 +45,28 @@ a:active {
   color: #5581ff;
 }
 
+footer {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.footer-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
+  height: 45px;
+  padding-left: 5px; /* slightly off center looks better w/ logo */
+}
+
+.footer-line>* {
+  margin: 0 10px;
+}
+
 .mirthturtle-logo {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 10px;
+  width: 50px;
+  height: 50px;
+  padding-bottom: 10px;
 }
 
 .banner {
@@ -59,7 +77,7 @@ a:active {
   margin-top: 2.4rem;
 }
 
-#headline, #metadata, #controls, #footer {
+#headline, #metadata, #controls, #footer-banner {
   text-align: center;
 }
 
@@ -72,14 +90,29 @@ a:active {
 #headline h1 {
   margin: 0;
 }
+
+/* Smaller screen header */
 @media only screen and (max-width: 45rem) {
   #headline h1 {
-    font-size: 1.5rem;
+    max-width: 400px;
+    font-size: 2.2rem;
+    line-height: 1.2em;
+    margin: 12px auto 0;
+  }
+  .crunchy {
+    font-size: 3.7em !important;
   }
 }
+/* Larger screen header */
 @media only screen and (min-width: 45rem) {
   #headline h1 {
-    font-size: 4rem;
+    font-size: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.3em;
+  }
+  .crunchy {
+    font-size: 5em !important;
   }
 }
 
@@ -227,10 +260,6 @@ a:active {
 .lock-icon {
   width: 13px;
   height: 13px;
-}
-
-#footer {
-  padding-bottom: 20px;
 }
 
 .hidden {

@@ -1,6 +1,6 @@
 var dev = document.location.host == "localhost";
 
-var shareLink = `http${dev ? '://localhost' : 's://christiancodes.github.io'}/mirthturtle-modplayer/`;
+var shareLink = `http${dev ? '://localhost' : 's://christiancodes.github.io'}/crunchy-reliable-beats/`;
 
 var modArchiveDownloadLink = "https://api.modarchive.org/downloads.php?moduleid=";
 var modArchivePageLink = "https://modarchive.org/index.php?request=view_by_moduleid&query=";
