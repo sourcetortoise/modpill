@@ -6,7 +6,7 @@
 
 Tune your experience to your state of mind: finely control the pitch and tempo to match your current rhythm of thought, and zone into your work like never before. Better than Adderall? That's what some listeners have asked.
 
-Try it out for yourself – put on a pair of wireless noise-cancelling headphones and **[get something done.](https://christiancodes.github.io/crunchy-reliable-beats/)**
+Try it out for yourself – put on a pair of wireless noise-cancelling headphones and **[get something done.](https://www.mirthturtle.com/crunchy-reliable-beats/)**
 
 
 ## Credits & Licenses
