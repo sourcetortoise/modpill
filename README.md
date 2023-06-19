@@ -1,22 +1,19 @@
 ![Crunchy: now in pill form](crunchy-tablet.png "Crunchy: Reliable Beats")
 # Crunchy: Reliable Beats
-## Productivity Jukebox
 
 200+ of the crunchiest, MOST reliable beats from the golden age of [Amiga MODs](https://en.wikipedia.org/wiki/MOD_(file_format)). Use recreationally or personalize your tuning to quickly achieve [flow state](https://en.wikipedia.org/wiki/Flow_(psychology)).
 
-**[Try it now](https://www.mirthturtle.com/crunchy/)**
-
-Best experienced with noise-cancelling and/or wireless headphones.
+**[Try it now!](https://www.mirthturtle.com/crunchy/)** Best experienced with noise-cancelling and/or wireless headphones.
 
 ## The perfect soundtrack for any task
 
-A jukebox for your state of mind! Tune the pitch and tempo to find your brain's secret internal rhythm and unlock a new level of focus. But be careful – this amount of productivity can be powerful and addictive.
+A jukebox for your state of mind. Tune the pitch and tempo to find your brain's secret internal rhythm and unlock a new level of focus. But be careful – this amount of productivity can be powerful and addictive.
 
 ## An exceptional playlist
 
-Thoughtfully curated over two decades, Crunchy's playlist features the best tunes from the classic [Demoscene](https://en.wikipedia.org/wiki/Demoscene) era and beyond. Cracktro, chiptune, fresh house, BGM and more, from timeless community favourites to forgotten masterpieces and undiscovered gems. 
+Thoughtfully curated over two decades, Crunchy's playlist features the best tunes from the classic 90's [Demoscene](https://en.wikipedia.org/wiki/Demoscene) era and beyond. Cracktro, chiptune, "house", BGM and more, from timeless community favourites to forgotten masterpieces and undiscovered gems. 
 
-Notably, every track is Reliable: that is, they should all play correctly at any pitch/tempo combination.
+Notably, every track is ***Reliable***: that is, they should all play correctly at any pitch/tempo combination.
 
 ### Tuning tips
 
