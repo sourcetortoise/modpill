@@ -1,7 +1,6 @@
-# Crunchy: Reliable Beats
-#### Productivity Jukebox
-
 ![Crunchy: now in pill form](crunchy-tablet.png "Crunchy: Reliable Beats")
+# Crunchy: Reliable Beats
+## Productivity Jukebox
 
 200+ of the crunchiest, MOST reliable beats from the golden age of [Amiga MODs](https://en.wikipedia.org/wiki/MOD_(file_format)). Use recreationally or personalize your tuning to quickly achieve [flow state](https://en.wikipedia.org/wiki/Flow_(psychology)).
 
