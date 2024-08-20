@@ -25,6 +25,12 @@ Tuning is optional, but it only takes a minute to optimize Crunchy for your work
 - Increase the volume until it's **almost too loud** but still comfortable and safe. You may feel some euphoria here.
 - If tuned correctly: you should now be completing your task! See you in x hours.
 
+## Running the application
+
+Download or clone the repo and place it in the `www` directory of your [https://httpd.apache.org/docs/2.4/platform/](Apache web server). Navigate to `http://localhost/crunchy-reliable-beats` to access the jukebox.
+
+To use your own playlist or add/remove tracks, modify the `js/favlist.js` file, which uses file names and Mod Archive IDs.
+
 ## Credits & Licenses
 
 Crunchy pulls music files directly from Mod Archive as permitted for personal use under the [Mod Archive Distribution license](https://modarchive.org/index.php?terms-upload). [View the playlist on Mod Archive](https://modarchive.org/index.php?request=view_member_favourites&query=93325) to see more info on individual tracks.
