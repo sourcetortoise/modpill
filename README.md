@@ -27,7 +27,7 @@ Tuning is optional, but it only takes a minute to optimize Crunchy for your work
 
 ## Running the application
 
-Download or clone the repo and place it in the `www` directory of your [https://httpd.apache.org/docs/2.4/platform/](Apache web server). Navigate to `http://localhost/crunchy-reliable-beats` to access the jukebox.
+Download or clone the repo and place it in the `www` directory of your [Apache web server](https://httpd.apache.org/docs/2.4/platform/). Navigate to `http://localhost/crunchy-reliable-beats` to access the jukebox.
 
 To use your own playlist or add/remove tracks, modify the `js/favlist.js` file, which uses file names and Mod Archive IDs.
 
