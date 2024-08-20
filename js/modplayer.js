@@ -49,7 +49,7 @@ libopenmpt.onRuntimeInitialized = function () {
     if (!currentMetadata['title']) {
       currentMetadata['title'] = filename;
     }
-    document.title = currentMetadata['title'] + " – Crunchy Reliable Beats";
+    document.title = currentMetadata['title'] + " – Modpill";
     printInfo( currentMetadata['title'] );
   }
 

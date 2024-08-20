@@ -91,11 +91,23 @@ footer {
   margin: 0;
 }
 
+/* Smallest screen header */
+@media only screen and (max-width: 380px) {
+  #headline h1 {
+    max-width: 300px;
+    font-size: 1.5rem;
+    line-height: 1.2em;
+    margin: 12px auto 0;
+  }
+  .crunchy {
+    font-size: 2em !important;
+  }
+}
 /* Smaller screen header */
-@media only screen and (max-width: 45rem) {
+@media only screen and (min-width: 380px) and (max-width: 45rem) {
   #headline h1 {
     max-width: 400px;
-    font-size: 2.2rem;
+    font-size: 1.4rem;
     line-height: 1.2em;
     margin: 12px auto 0;
   }
@@ -106,13 +118,25 @@ footer {
 /* Larger screen header */
 @media only screen and (min-width: 45rem) {
   #headline h1 {
-    font-size: 3rem;
+    font-size: 1.8rem;
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.3em;
   }
   .crunchy {
     font-size: 5em !important;
+  }
+}
+/* Ultrawide screen header */
+@media only screen and (min-width: 60rem) {
+  #headline h1 {
+    font-size: 2.1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    line-height: 1.3em;
+  }
+  .crunchy {
+    font-size: 6em !important;
   }
 }
 
@@ -130,8 +154,9 @@ footer {
 
 /* CONTROLS */
 
+
 #controls {
-  margin-top: 1.9rem;
+  margin-top: 1.8rem;
 }
 
 .control {
@@ -190,6 +215,7 @@ footer {
 
 #super-slider-box {
   display: flex;
+  justify-content: center;
   max-width: 300px;
   margin: 0 auto 10px;
 
@@ -211,6 +237,7 @@ footer {
 }
 #sliders > div > input {
   margin-left: 1rem;
+  max-width: 150px;
 }
 #volume {
   writing-mode: bt-lr; /* IE */
@@ -232,19 +259,29 @@ footer {
 
 .reset-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 100px;
+  width: 230px;
   height: 16px;
   margin: 10px auto 0;
+  padding-left: 10px;
 }
 
 .reset-link {
   font-size: 0.7em;
 }
 
-#modarchive-track-link, #clipboard-button {
+#modarchive-track-link, #clipboard-buttons, #extra-share {
   display: none;
+}
+
+#extra-share {
+  text-decoration: none !important;
+}
+
+#extra-placeholder {
+  display: inline-block;
+  width: 8px;
 }
 
 .link-img {
@@ -260,6 +297,116 @@ footer {
 .lock-icon {
   width: 13px;
   height: 13px;
+}
+
+.hidden {
+  position: absolute;
+  left: -1000em;;
+}
+
+#headline {
+  transition: all 0.5s ease;
+}
+
+.info-link {
+  font-size: 0.5em;
+  margin: 0 3px 3px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.underline-fix {
+  text-decoration: none !important;
+}
+
+/* Ultrawide */
+@media screen and (min-width: 1400px) {
+
+  #metadata {
+    height: 40px;
+  }
+
+  #title, label, .footer-line > a {
+    font-size: 1.2em;
+  }
+
+  #super-slider-box {
+    max-width: 600px;
+  }
+
+  .control {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 5rem;
+    box-shadow: 0px 12px 0px #323232, 0px 9px 25px rgba(0, 0, 0, 0.7);
+    transition: all 0.1s ease;
+  }
+
+  .control:active, .control.pressed {
+    box-shadow: 0px 3px 0px #323232, 0px 7px 20px rgba(0, 0, 0, 0.7);
+    transform: translate(0, 8px);
+  }
+
+  #sliders {
+    margin-top: 40px;
+  }
+
+  #sliders > div > input {
+    margin-left: 1rem;
+    min-width: 225px;
+    max-width: 225px;
+  }
+
+  .control#play {
+    background-size: 75%;
+    background-position: 25px 16px;
+  }
+  .control#next {
+    background-size: 75%;
+    background-position: 25px 19px;
+  }
+  .control#loop {
+    background-size: 75%;
+    background-position: 15px 16px;;
+  }
+
+  #volume {
+    margin-top: 45px;
+  }
+
+  .reset-container {
+    width: 300px;
+  }
+
+  .reset-link {
+    font-size: 0.8em;
+  }
+
+  .info-link {
+    font-size: 0.6em;
+  }
+
+  footer {
+    margin-top: 40px;
+  }
+
+}
+
+.reset-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100px;
+  height: 16px;
+  margin: 10px auto 0;
+}
+
+.reset-link {
+  font-size: 0.7em;
+}
+
+#modarchive-track-link, #clipboard-button {
+  display: none;
 }
 
 .hidden {
