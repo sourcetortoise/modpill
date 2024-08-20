@@ -1,7 +1,5 @@
 var dev = document.location.host == "localhost";
 
-var shareLink = `http${dev ? '://localhost' : 's://christiancodes.github.io'}/crunchy-reliable-beats/`;
-
 var modArchiveDownloadLink = "https://api.modarchive.org/downloads.php?moduleid=";
 var modArchivePageLink = "https://modarchive.org/index.php?request=view_by_moduleid&query=";
 
@@ -63,9 +61,6 @@ libopenmpt.onRuntimeInitialized = function () {
     linkElement = document.getElementById('modarchive-track-link');
     linkElement.style = 'display: inline-block';
     linkElement.href = modArchivePageLink + id;
-
-    clipboardElement = document.getElementById('clipboard-button');
-    clipboardElement.style = 'display: inline-block';
   }
 
   function playAfterLoad(options, buffer) {
@@ -96,10 +91,6 @@ libopenmpt.onRuntimeInitialized = function () {
     }
   }
 
-  function trackShareLink(id) {
-    return `${shareLink}#${id}`;
-  }
-
   function preloadTrack(id) {
     var request = new XMLHttpRequest();
     request.open('GET', modArchiveDownloadLink + id);
@@ -126,39 +117,21 @@ libopenmpt.onRuntimeInitialized = function () {
   }
 
   function getFavouritesList() {
-    var request = new XMLHttpRequest();
-    request.open('GET', 'https://www.myshimari.com/mods');  // call /testmods for shorter songs
-    request.setRequestHeader('Content-Type', 'application/json');
+    let favList = getOfflineList();
 
-    request.onreadystatechange = function () {
-      var favList = [];
-      if (this.readyState === 4) {
-        try {
-          JSON.parse(this.responseText).forEach(function(fav) {
-            favList.push({title: fav[0], id: fav[1]});
-          });
-        } catch (error) {
-          console.error("API error", error);
-          // bad API return – use local playlist
-          favList = getOfflineList();
-        }
+    currentMetadata['title'] = `Press play to start • ${favList.length} tracks loaded`;
+    printInfo( currentMetadata['title'] );
 
-        currentMetadata['title'] = `Press play to start • ${favList.length} tracks loaded`;
-        printInfo( currentMetadata['title'] );
+    songList = shuffleArray(favList);
+    findSongFromUrlHash();
 
-        songList = shuffleArray(favList);
-        findSongFromUrlHash();
-
-        // preload first 2 tracks
-        preloadTrack(songList[songIndex].id);
-        if (songIndex == songList.length - 1) {
-          preloadTrack(songList[0].id);
-        } else {
-          preloadTrack(songList[songIndex + 1].id);
-        }
-      }
-    };
-    request.send();
+    // preload first 2 tracks
+    preloadTrack(songList[songIndex].id);
+    if (songIndex == songList.length - 1) {
+      preloadTrack(songList[0].id);
+    } else {
+      preloadTrack(songList[songIndex + 1].id);
+    }
   }
 
   function getOfflineList() {
@@ -317,20 +290,8 @@ libopenmpt.onRuntimeInitialized = function () {
     }
   }
 
-  function clipboardClick() {
-    var theShareLink = trackShareLink(songList[songIndex].id);
-    var sampleText = document.getElementById("sharelink-box");
-    sampleText.value = theShareLink;
-    sampleText.select();
-    sampleText.setSelectionRange(0, 99999)
-    document.execCommand("copy");
-
-    printInfo("copied!");
-  }
-
   // HOVERS
   function hoverModarchiveLink()  { printInfo("view on modarchive.org"); }
-  function hoverClipboardButton() { printInfo("copy link to clipboard"); }
   function hoverTurtle()   { printInfo("visit mirthturtle.com"); }
   function hoverReset()    { printInfo("reset tempo and pitch"); }
   function hoverSource()   { printInfo("view source code"); }
@@ -366,7 +327,6 @@ libopenmpt.onRuntimeInitialized = function () {
     var toggleLink = document.getElementById('day-night-link');
     var stylesheet = document.getElementById('nightmode-css');
     var fileIcon = document.getElementById('track-file-image');
-    var shareIcon = document.getElementById('track-share-image');
     var turtle = document.getElementById('mirthturtle-logo');
 
     nightMode = !nightMode;
@@ -374,13 +334,11 @@ libopenmpt.onRuntimeInitialized = function () {
       toggleLink.text = "☀"
       stylesheet.disabled = '';
       fileIcon.src = "img/file-white.png";
-      shareIcon.src = "img/link-white.png";
       turtle.src = "img/mirthturtle-party.png";
     } else {
       toggleLink.text = "☾"
       stylesheet.disabled = 'disabled';
       fileIcon.src = "img/file.png";
-      shareIcon.src = "img/link.png";
       turtle.src = "img/mirthturtle.png";
     }
   }
@@ -409,15 +367,11 @@ libopenmpt.onRuntimeInitialized = function () {
 
   // links and buttons
   document.querySelector('#reset-link').addEventListener('click', resetPitchAndTempo, false);
-  document.querySelector('#clipboard-button').addEventListener('click', clipboardClick, false);
   document.querySelector('#day-night-link').addEventListener('click', toggleDayAndNight, false);
 
   // hover
   document.querySelector('#modarchive-track-link').addEventListener('mouseover', hoverModarchiveLink, false);
   document.querySelector('#modarchive-track-link').addEventListener('mouseout', showTrackInfo, false);
-
-  document.querySelector('#clipboard-button').addEventListener('mouseover', hoverClipboardButton, false);
-  document.querySelector('#clipboard-button').addEventListener('mouseout', showTrackInfo, false);
 
   document.querySelector('#mirthturtle-logo').addEventListener('mouseover', hoverTurtle, false);
   document.querySelector('#mirthturtle-logo').addEventListener('mouseout', showTrackInfo, false);

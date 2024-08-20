@@ -27,7 +27,7 @@ Tuning is optional, but it only takes a minute to optimize Crunchy for your work
 
 ## Credits & Licenses
 
-Music files are pulled directly from Mod Archive as permitted under the [Mod Archive Distribution license](https://modarchive.org/index.php?terms-upload). Eternal thanks to the many MOD artists featured. [View the playlist on Mod Archive](https://modarchive.org/index.php?request=view_member_favourites&query=93325) to see more info on individual tracks.
+Crunchy pulls music files directly from Mod Archive as permitted for personal use under the [Mod Archive Distribution license](https://modarchive.org/index.php?terms-upload). [View the playlist on Mod Archive](https://modarchive.org/index.php?request=view_member_favourites&query=93325) to see more info on individual tracks.
 
 Built with [Chiptune2.js](https://github.com/deskjet/chiptune2.js).
 
