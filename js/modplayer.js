@@ -35,7 +35,7 @@ libopenmpt.onRuntimeInitialized = function () {
     if (isLooping) {
       player.onEnded(function () {
         // TODO make this better. does not loop cleanly
-        loadTrackById(songList[songIndex].id)
+        loadTrackById(songList[songIndex][1])
       });
     } else {
       player.onEnded(function () {
@@ -117,29 +117,28 @@ libopenmpt.onRuntimeInitialized = function () {
   }
 
   function getFavouritesList() {
-    let favList = getOfflineList();
-
     currentMetadata['title'] = `Press play to start • ${favList.length} tracks loaded`;
     printInfo( currentMetadata['title'] );
 
+    // ARRANGE PLAYLIST
     songList = shuffleArray(favList);
-    findSongFromUrlHash();
+
+    // put Winners at the end
+    var winnersIndex = songList.findIndex(songArr => songArr[0] == 'winners.mod');
+    songList.push(songList.splice(winnersIndex, 1)[0]);
+
+    // take a random starter and put it at the beginning
+    let randomStarter = starters[ Math.floor(Math.random() * starters.length) ];
+    var starterIndex = songList.findIndex(songArr => songArr[0] == randomStarter[0]);
+    songList.unshift(songList.splice(starterIndex, 1)[0]);
 
     // preload first 2 tracks
-    preloadTrack(songList[songIndex].id);
+    preloadTrack(songList[songIndex][1]);
     if (songIndex == songList.length - 1) {
-      preloadTrack(songList[0].id);
+      preloadTrack(songList[0][1]);
     } else {
-      preloadTrack(songList[songIndex + 1].id);
+      preloadTrack(songList[songIndex + 1][1]);
     }
-  }
-
-  function getOfflineList() {
-    var list = [];
-    offlineFavList.forEach(function(fav) {
-      list.push({title: fav[0], id: fav[1]})
-    });
-    return list;
   }
 
   function shuffleArray(arr) {
@@ -154,14 +153,14 @@ libopenmpt.onRuntimeInitialized = function () {
     var hashId = window.location.hash.slice(1);
     if (hashId) {
       var song = songList.find(function(songHash) {
-        return songHash.id == hashId;
+        return songHash[1] == hashId;
       })
       if (song) {
         // set the cursor for the current song
         songIndex = songList.indexOf(song);
 
         // light up controls and title, but don't autoplay
-        loadTrackById(song.id, false);
+        loadTrackById(song[1], false);
       }
     }
     window.location.hash = "";
@@ -184,7 +183,7 @@ libopenmpt.onRuntimeInitialized = function () {
         if (isPaused) {
           player.togglePause();
         } else {
-          loadTrackById(songList[songIndex].id);
+          loadTrackById(songList[songIndex][1]);
         }
         turnButtonToPause();
         enableSliders();
@@ -198,7 +197,7 @@ libopenmpt.onRuntimeInitialized = function () {
     if (!document.getElementById('next').classList.contains('disabled-button')) {
       isPlaying = true;
       incrementSongIndex();
-      loadTrackById(songList[songIndex].id);
+      loadTrackById(songList[songIndex][1]);
       turnButtonToPause();
       enableSliders();
       preloadNextTrack();
@@ -208,7 +207,7 @@ libopenmpt.onRuntimeInitialized = function () {
   function pressPreviousButton() {
     isPlaying = true;
     decrementSongIndex();
-    loadTrackById(songList[songIndex].id);
+    loadTrackById(songList[songIndex][1]);
     turnButtonToPause();
     enableSliders();
   }
