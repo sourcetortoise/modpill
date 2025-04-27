@@ -1,4 +1,4 @@
-![Modpill](modpill-screenshot.png "Modpill – Focus music")
+![Modpill](modpill-front.jpg "Modpill – Focus music")
 # Modpill – Focus music
 
 200+ of the crunchiest, MOST reliable beats from the golden age of [Amiga MODs](https://en.wikipedia.org/wiki/MOD_(file_format)). Use recreationally or personalize the tuning to quickly achieve [flow state](https://en.wikipedia.org/wiki/Flow_(psychology)).
