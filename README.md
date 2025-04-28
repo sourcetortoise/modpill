@@ -1,9 +1,13 @@
-![Modpill](modpill-front.jpg "Modpill – Focus music")
 # Modpill – Focus music
 
-200+ of the crunchiest, MOST reliable beats from the golden age of [Amiga MODs](https://en.wikipedia.org/wiki/MOD_(file_format)). Use recreationally or personalize the tuning to quickly achieve [flow state](https://en.wikipedia.org/wiki/Flow_(psychology)).
+200+ of the crunchiest, MOST reliable tunes from the golden age of [Amiga MODs](https://en.wikipedia.org/wiki/MOD_(file_format)). Use recreationally or personalize the tuning to quickly achieve [flow state](https://en.wikipedia.org/wiki/Flow_(psychology)).
 
 Best experienced with noise-cancelling and/or wireless headphones.
+
+Pulls music files on-the-fly from [The Mod Archive](https://modarchive.org/), as permitted for personal use under the [Mod Archive Distribution license](https://modarchive.org/index.php?terms-upload). For this reason, **there's no demo version hosted anywhere and you must run it yourself.**
+
+![Modpill](modpill-front.jpg "Modpill – Focus music")
+*this used to be a screenshot but people kept clicking on the play button*
 
 ## The perfect soundtrack for any task
 
@@ -19,7 +23,7 @@ Notably, every track is ***Reliable***: that is, it'll play correctly at any pit
 
 Tuning is optional, but it only takes a minute to optimize Modpill for your work session:
 
-- Find an upbeat track
+- Choose an upbeat track (the first track will always be tune-worthy)
 - Adjust the tempo until you're **bobbing your head comfortably**. It shouldn't feel like it's rushing you or slowing you down.
 - Adjust the pitch until you feel **tingles down your neck** and throughout your body. Find the sweet spot where the tingles persist as you bob your head.
 - Increase the volume until it's **almost too loud** but still comfortable and safe. You may feel some euphoria here.
@@ -27,13 +31,13 @@ Tuning is optional, but it only takes a minute to optimize Modpill for your work
 
 ## Running the application
 
-Download or clone the repo and place it in the `www` directory of your [Apache web server](https://httpd.apache.org/docs/2.4/platform/). Navigate to `http://localhost/modpill` to access the jukebox.
+Download or clone the repo and place it in the `www` directory of a running [Apache web server](https://httpd.apache.org/docs/2.4/platform/). Navigate to `http://localhost/modpill` or `http://localhost:8080/modpill` to access the jukebox.
 
-To use your own playlist or add/remove tracks, modify the `js/favlist.js` file, which uses file names and Mod Archive IDs.
+To use your own playlist or add/remove tracks, modify the `js/favlist.js` file, which uses MOD file names and Mod Archive IDs.
 
 ## Credits & Licenses
 
-Modpill pulls music files directly from Mod Archive as permitted for personal use under the [Mod Archive Distribution license](https://modarchive.org/index.php?terms-upload). [View the playlist on Mod Archive](https://modarchive.org/index.php?request=view_member_favourites&query=93325) to see more info on individual tracks.
+[View the playlist on Mod Archive](https://modarchive.org/index.php?request=view_member_favourites&query=93325) to see artist or demogroup info on individual tracks.
 
 Built with [Chiptune2.js](https://github.com/deskjet/chiptune2.js).
 
