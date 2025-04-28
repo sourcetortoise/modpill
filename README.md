@@ -4,10 +4,10 @@
 
 Best experienced with noise-cancelling and/or wireless headphones.
 
-Pulls music files on-the-fly from [The Mod Archive](https://modarchive.org/), as permitted for personal use under the [Mod Archive Distribution license](https://modarchive.org/index.php?terms-upload). For this reason, **there's no demo version hosted anywhere and you must run it yourself.**
+Pulls music files on-the-fly from [The Mod Archive](https://modarchive.org/), as permitted for personal use only. For this reason, **there's no demo version hosted anywhere and you must run it yourself.**
 
 ![Modpill](modpill-front.jpg "Modpill – Focus music")
-*this used to be a screenshot but people kept clicking on the play button*
+*(this used to be a screenshot but people kept clicking on the play button)*
 
 ## The perfect soundtrack for any task
 
@@ -36,6 +36,8 @@ Download or clone the repo and place it in the `www` directory of a running [Apa
 To use your own playlist or add/remove tracks, modify the `js/favlist.js` file, which uses MOD file names and Mod Archive IDs.
 
 ## Credits & Licenses
+
+MOD files are pulled directly from The Mod Archive as permitted under the [Mod Archive Distribution license](https://modarchive.org/index.php?terms-upload).
 
 [View the playlist on Mod Archive](https://modarchive.org/index.php?request=view_member_favourites&query=93325) to see artist or demogroup info on individual tracks.
 
